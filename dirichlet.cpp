@@ -20,22 +20,21 @@ Type ddirmultinom(vector<Type> obs, vector<Type> p, Type phi, int do_log) {
 template<class Type>
   Type objective_function<Type>::operator() ()
 {
-  // DATA_VECTOR(len);
-  // DATA_VECTOR(age);
-  //
-  // PARAMETER(k);
-  // PARAMETER(linf);
-  // PARAMETER(log_sigma);
-  // PARAMETER(t0);
-  //
-  // int n = len.size();
-  // vector<Type> eta(n);
-  // Type nll = 0.0;
-  //
-  // for(int i = 0; i < n; i++){
-  //   eta(i) = linf * (1 - exp(-k * (age(i) - t0)));
-  //   nll -= dlnorm(len(i), log(eta(i)) - pow(exp(log_sigma), 2)/2, exp(log_sigma), true);
-  // }
+  DATA_MATRIX(paa_obs);
+  DATA_VECTOR(Neff);
 
+  PARAMETER(log_phi);
+  PARAMETER_VECTOR(p);
+
+  int n_t = paa_obs.rows();
+  Type nll = Type(0.0);
+
+  // paa_pred usually produced by dynamics of assessment model, but here:
+  vector<Type> paa_pred = exp(p) / exp(p).sum(); // simplex; sum to 1
+
+  for (int i = 0; i < n_t; i++) {
+    vector<Type> temp_n = Neff(i) * paa_obs.row(i);
+    nll -= ddirmultinom(temp_n, paa_pred, exp(log_phi), true);
+  }
   return nll;
   }

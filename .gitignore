@@ -2,5 +2,16 @@
 .Rhistory
 .RData
 .Ruserdata
+*.bar
+*.dep
+*.dll
+*.eva
+*.hes
+*.htp
+*.log
 *.o
+*.obj
+*.par
+*.rep
 *.so
+dirmult.cpp

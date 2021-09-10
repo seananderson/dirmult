@@ -14,7 +14,6 @@
 *.o
 *.obj
 *.par
-*.rep
 *.so
 *.std
 

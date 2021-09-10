@@ -12,7 +12,7 @@ PARAMETER_SECTION
   objective_function_value objfun
 
 PRELIMINARY_CALCS_SECTION
-  random_number_generator rng(10293);
+  //random_number_generator rng(10293);
   //log_phi = log(200) + randn(rng) * 0.5;
   //p.fill_seqadd(1.0, 0.0);
 
@@ -27,7 +27,7 @@ FUNCTION dvariable ddirmultinom(dvar_vector& obs, dvar_vector& p, dvariable& log
   dvariable phi = exp(log_phi);
   dvariable N = sum(obs);
   dvariable ll = gammln(N + 1.0) +
-                 gammln(phi); -
+                 gammln(phi) -
                  gammln(N + phi);
   for(int a = obs.indexmin(); a <= obs.indexmax(); a++){
     ll += -gammln(obs(a) + 1.0) +

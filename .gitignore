@@ -2,6 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+*.b0*
 *.bar
 *.cor
 *.cov
@@ -13,7 +14,9 @@
 *.log
 *.o
 *.obj
+*.p0*
 *.par
+*.r0*
 *.so
 *.std
 

@@ -1,15 +1,13 @@
 rdirichlet <- function(p, phi) {
-  alpha <- p * phi + 1e-7
+  alpha <- p * phi
   obs <- rgamma(length(p), alpha, 1)
-  obs <- obs / sum(obs)
-  obs
+  obs / sum(obs)
 }
 
 rdirichlet_linear <- function(p, theta, N) {
-  alpha <- p * theta * N + 1e-7
+  alpha <- p * theta * N
   obs <- rgamma(length(p), alpha, 1)
-  obs <- obs / sum(obs)
-  obs
+  obs / sum(obs)
 }
 
 out1 <- sapply(1:10, function(i) rdirichlet(c(0.1, 0.1, 0.4, 0.4), 1e6))
